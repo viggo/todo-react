@@ -6,6 +6,7 @@ import { TodoProvider } from './components/TodoContext';
 import About from './About';
 import AboutIndex from './AboutIndex';
 import Hilsen from './Hilsen';
+import NothingHere from './NothingHere';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const DATA = [
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route index element={<AboutIndex />} />
             <Route path=":navn" element={<Hilsen />} />
           </Route>
+          <Route path="*" element={<NothingHere />} />
         </Routes>
       </BrowserRouter>
     </TodoProvider>
