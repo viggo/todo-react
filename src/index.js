@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { TodoProvider } from "./components/TodoContext";
 
 
 const DATA = [
@@ -12,7 +13,9 @@ const DATA = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App tasks={DATA} />
+    <TodoProvider>
+      <App tasks={DATA} />
+    </TodoProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

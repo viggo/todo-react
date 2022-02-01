@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { TodoContext } from './TodoContext.js'
 
 function usePrevious(value) {
   const ref = useRef();
@@ -13,6 +13,9 @@ export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
 
+  const { dark } = useContext(TodoContext)
+
+  const buttonStyle = dark ? { color: 'white', borderColor: 'white'} : {}
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
 
@@ -53,11 +56,12 @@ export default function Todo(props) {
           type="button"
           className="btn todo-cancel"
           onClick={() => setEditing(false)}
+          style={buttonStyle}
         >
           Cancel
           <span className="visually-hidden">renaming {props.name}</span>
         </button>
-        <button type="submit" className="btn btn__primary todo-edit">
+        <button type="submit" className="btn btn__primary todo-edit" style={buttonStyle}>
           Save
           <span className="visually-hidden">new name for {props.name}</span>
         </button>
@@ -67,7 +71,7 @@ export default function Todo(props) {
 
   const viewTemplate = (
     <div className="stack-small">
-      <div className="c-cb">
+      <div className="c-cb" style={{ color: dark && 'white' }}>
           <input
             id={props.id}
             type="checkbox"
@@ -84,6 +88,7 @@ export default function Todo(props) {
           className="btn"
           onClick={() => setEditing(true)}
           ref={editButtonRef}
+          style={buttonStyle}
           >
             Edit <span className="visually-hidden">{props.name}</span>
           </button>

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TodoContext } from "./TodoContext";
 
 function Form(props) {
   const [name, setName] = useState('');
-
+  const { dark } = useContext(TodoContext)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +22,7 @@ function Form(props) {
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="label-wrapper">
-        <label htmlFor="new-todo-input" className="label__lg">
+        <label htmlFor="new-todo-input" className="label__lg" style={{color: dark && 'white' }}>
           What needs to be done?
         </label>
       </h2>
@@ -35,7 +36,7 @@ function Form(props) {
         value={name}
         onChange={handleChange}
       />
-      <button type="submit" className="btn btn__primary btn__lg">
+      <button type="submit" className="btn btn__primary btn__lg" style={{ borderColor: dark && 'white'}}>
         Add
       </button>
     </form>

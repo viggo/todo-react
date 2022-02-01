@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
+import ToggleDark from "./components/ToggleDark";
 import { nanoid } from "nanoid";
-
+import { TodoContext } from './components/TodoContext'
 
 function usePrevious(value) {
   const ref = useRef();
@@ -24,7 +25,7 @@ const FILTER_NAMES = Object.keys(FILTER_MAP);
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState('All');
-
+  const { dark } = useContext(TodoContext);
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map(task => {
       // if this task has the same ID as the edited task
@@ -99,12 +100,12 @@ function App(props) {
   }, [tasks.length, prevTaskLength]);
 
   return (
-    <div className="todoapp stack-large">
+    <div className="todoapp stack-large" style={{backgroundColor: dark && 'black'}}>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
         {filterList}
       </div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef} style={{ color: dark && 'white'}}>
         {headingText}
       </h2>
       <ul
@@ -114,6 +115,7 @@ function App(props) {
       >
         {taskList}
       </ul>
+      <ToggleDark />
     </div>
   );
 }
