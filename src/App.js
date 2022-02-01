@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-import React, { useContext, useState, useRef, useEffect } from "react";
-import Form from "./components/Form";
-import FilterButton from "./components/FilterButton";
-import Todo from "./components/Todo";
-import ToggleDark from "./components/ToggleDark";
-import { nanoid } from "nanoid";
-import { TodoContext } from './components/TodoContext'
-=======
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
 import Todo from './components/Todo';
+import ToggleDark from './components/ToggleDark';
 import { nanoid } from 'nanoid';
+import { TodoContext } from './components/TodoContext';
 import { Link } from 'react-router-dom';
->>>>>>> b4f37f64 (La på en about route)
 
 function usePrevious(value) {
   const ref = useRef();
@@ -106,17 +98,19 @@ function App(props) {
   }, [tasks.length, prevTaskLength]);
 
   return (
-    <div className="todoapp stack-large" style={{backgroundColor: dark && 'black'}}>
+    <div
+      className="todoapp stack-large"
+      style={{ backgroundColor: dark && 'black' }}
+    >
       <Form addTask={addTask} />
-<<<<<<< HEAD
-      <div className="filters btn-group stack-exception">
-        {filterList}
-      </div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef} style={{ color: dark && 'white'}}>
-=======
+
       <div className="filters btn-group stack-exception">{filterList}</div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
->>>>>>> b4f37f64 (La på en about route)
+      <h2
+        id="list-heading"
+        tabIndex="-1"
+        ref={listHeadingRef}
+        style={{ color: dark && 'white' }}
+      >
         {headingText}
       </h2>
       <ul
@@ -126,11 +120,8 @@ function App(props) {
       >
         {taskList}
       </ul>
-<<<<<<< HEAD
-      <ToggleDark />
-=======
       <Link to="/about">About</Link>
->>>>>>> b4f37f64 (La på en about route)
+      <ToggleDark />
     </div>
   );
 }
